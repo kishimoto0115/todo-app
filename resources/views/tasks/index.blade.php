@@ -39,6 +39,18 @@
                             </p>
                         </div>
                         @enderror
+
+
+                        <label for="pet-select">:</label>
+
+                        <select name="pets" id="pet-select">
+                            <option value="">--カテゴリー--</option>
+                            <option value="dog">勉強</option>
+                            <option value="cat">お手伝い</option>
+                            <option value="hamster">宿題</option>
+                        </select>
+
+
                         <button type="submit"
                             class="mt-8 p-4 bg-slate-800 text-white w-full max-w-xs hover:bg-slate-900 transition-colors">
                             追加する
@@ -94,9 +106,10 @@
                                         <a href="/tasks/{{ $item->id }}/edit/"
                                             class="inline-block text-center py-4 w-20 underline underline-offset-2 text-sky-600 md:hover:bg-sky-100 transition-colors">編集</a>
                                     </div>
+
                                     <div>
-                                        <form action="/tasks/{{ $item->id }}" method="post"
-                                            class="inline-block text-gray-500 font-medium" role="menuitem"
+                                        <form onsubmit="return deleteTask();" action="/tasks/{{ $item->id }}"
+                                            method="post" class="inline-block text-gray-500 font-medium" role="menuitem"
                                             tabindex="-1">
                                             @csrf
                                             @method('DELETE')
@@ -104,36 +117,26 @@
                                                 class="py-4 w-20 md:hover:bg-slate-200 transition-colors">削除</button>
                                         </form>
                                     </div>
+
                                 </div>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
+                    <script>
+                        function deleteTask() {
+                            if (confirm('本当に削除しますか？')) {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }
+                    </script>
                 </table>
             </div>
         </div>
     </div>
     @endif
-
-
-    <div>
-        <form onsubmit="return deleteTask();" action="/tasks/{{ $item->id }}" method="post"
-            class="inline-block text-gray-500 font-medium" role="menuitem" tabindex="-1">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="py-4 w-20 md:hover:bg-slate-200 transition-colors">削除</button>
-        </form>
-    </div>
-    <script>
-        function deleteTask() {
-            if (confirm('本当に削除しますか？')) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    </script>
-</body>
 
 
 </html>
