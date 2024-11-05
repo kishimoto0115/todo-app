@@ -43,7 +43,7 @@ class TaskController extends Controller
 
 
         $task->name = $request->input('task_name');
-
+        $task->category = $request->input('category');
 
         $task->save();
 
