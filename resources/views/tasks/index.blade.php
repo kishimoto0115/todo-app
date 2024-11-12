@@ -39,15 +39,22 @@
                             </p>
                         </div>
                         @enderror
+                        @error('category')
+                        <div class="mt-3">
+                            <p class="text-red-500">
+                               カテゴリーは {{ $message }}
+                            </p>
+                        </div>
+                        @enderror
 
 
-                        <label for="pet-select">:</label>
+          
 
-                        <select name="pets" id="pet-select">
+                        <select name="category" id="category-select">
                             <option value="">--カテゴリー--</option>
-                            <option value="dog">勉強</option>
-                            <option value="cat">お手伝い</option>
-                            <option value="hamster">宿題</option>
+                            <option value="勉強">勉強</option>
+                            <option value=" お手伝い">お手伝い</option>
+                            <option value="宿題">宿題</option>
                         </select>
 
 
@@ -76,6 +83,8 @@
                         <tr>
                             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">
                                 タスク</th>
+                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">
+                                カテゴリー</th>
                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                                 <span class="sr-only">Actions</span>
                             </th>
@@ -87,6 +96,11 @@
                             <td class="px-3 py-4 text-sm text-gray-500">
                                 <div>
                                     {{ $item->name }}
+                                </div>
+                            </td>
+                            <td class="px-3 py-4 text-sm text-gray-500">
+                                <div>
+                                    {{ $item->category }}
                                 </div>
                             </td>
                             <td class="p-0 text-right text-sm font-medium">
@@ -101,11 +115,14 @@
                                             <button type="submit"
                                                 class="bg-emerald-700 py-4 w-20 text-white md:hover:bg-emerald-800 transition-colors">完了</button>
                                         </form>
+                                    
                                     </div>
+                                  
                                     <div>
                                         <a href="/tasks/{{ $item->id }}/edit/"
                                             class="inline-block text-center py-4 w-20 underline underline-offset-2 text-sky-600 md:hover:bg-sky-100 transition-colors">編集</a>
                                     </div>
+                                 
 
                                     <div>
                                         <form onsubmit="return deleteTask();" action="/tasks/{{ $item->id }}"

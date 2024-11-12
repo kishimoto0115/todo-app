@@ -39,6 +39,13 @@
                             </div>
                             @enderror
                         </label>
+                      
+                      <select name="category" id="category-select">
+                            <option value="">--カテゴリー--</option>
+                            <option value="勉強">勉強</option>
+                            <option value=" お手伝い">お手伝い</option>
+                            <option value="宿題">宿題</option>
+                        </select>
 
                         <div class="mt-8 w-full flex items-center justify-center gap-10">
                             <a href="/tasks" class="block shrink-0 underline underline-offset-2">

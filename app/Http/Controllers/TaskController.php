@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Support\Facades\Validator;
 
+use function Laravel\Prompts\select;
+
 class TaskController extends Controller
 {
     /**
@@ -33,6 +35,7 @@ class TaskController extends Controller
     {
         $rules = [
             'task_name' => 'required|max:100',
+            'category' => 'required',
         ];
 
         $messages = ['required' => '必須項目です', 'max' => '100文字以下にしてください。'];
@@ -77,6 +80,7 @@ class TaskController extends Controller
         if ($request->status === null) {
             $rules = [
                 'task_name' => 'required|max:100',
+                'category' => 'required|max:100',
             ];
 
             $messages = ['required' => '必須項目です', 'max' => '100文字以下にしてください。'];
@@ -89,6 +93,7 @@ class TaskController extends Controller
 
             //モデル->カラム名 = 値 で、データを割り当てる
             $task->name = $request->input('task_name');
+            $task->category = $request->input('category');
 
             //データベースに保存
             $task->save();
